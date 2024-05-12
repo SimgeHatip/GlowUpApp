@@ -14,6 +14,7 @@ import {HttpClientModule, provideHttpClient, withFetch} from "@angular/common/ht
 import {FormsModule} from "@angular/forms";
 import {httpInterceptorProviders} from "./helper/auth.interceptor";
 import {provideRouter} from "@angular/router";
+import {WebcamModule} from "ngx-webcam";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {provideRouter} from "@angular/router";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    WebcamModule
   ],
   providers: [
     provideClientHydration(),
