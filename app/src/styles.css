@@ -1,0 +1,19 @@
+
+body {
+  background: #C2B2B4;
+}
+
+.navbar {
+  background: #3A4454;
+}
+
+.navbar .nav-link{
+  color: #fff;
+}
+
+.main-header .navbar-brand {
+  color: #fff;
+}
+
+
+
