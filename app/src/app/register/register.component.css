@@ -1,7 +1,94 @@
-.app-register-divider {
-  width: 73%;
-  height: 0px;
-  margin-left: 14%;
-  border: 1px solid #7B7B7B;
+body {
+  background: linear-gradient(130deg, #C2B2B4, #6B4E71, #3A4454, #53687E, #F5DDDD);
+  background-size: 150% 150%;
+  animation: gradientAnimation 10s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.profile-img-container {
+  margin-bottom: 1.5rem;
+}
+
+.profile-img-card {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.input-group-text {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 15px 0 0 15px;
+  color: #fff;
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 0 15px 15px 0;
+  color: #fff;
+}
+
+.form-control::placeholder {
+  color: #ddd;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary {
+  background-color: #3A4454;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #53687E;
+}
+
+.invalid-feedback {
+  display: block;
+  color: #ff4b2b;
+}
+
+.text-login {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-check-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.vh-100 {
+  height: 100vh !important;
 }

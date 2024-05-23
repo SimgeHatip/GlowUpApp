@@ -1,6 +1,13 @@
 
 body {
-  background: #C2B2B4;
+    /*background: linear-gradient(135deg, #C2B2B4, #6B4E71, #3A4454, #53687E, #F5DDDD);*/
+    background: linear-gradient(135deg, #3A4454, #6B4E71, #53687E, #6B4E71, #3A4454);
+    background-size: 200% 200%;
+    animation: gradientAnimation 15s ease infinite;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 .navbar {
