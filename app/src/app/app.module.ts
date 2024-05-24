@@ -15,6 +15,7 @@ import {FormsModule} from "@angular/forms";
 import {httpInterceptorProviders} from "./helper/auth.interceptor";
 import {provideRouter} from "@angular/router";
 import {WebcamModule} from "ngx-webcam";
+import { ChatBoxComponent } from './chat-box/chat-box.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {WebcamModule} from "ngx-webcam";
     ProfileComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    ChatBoxComponent
   ],
   imports: [
     BrowserModule,

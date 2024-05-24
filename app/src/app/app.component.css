@@ -1,0 +1,19 @@
+.divider {
+    width: 1px;
+    height: 20px;
+    background-color: #ccc;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.header-items {
+    display: flex;
+    align-items: center;
+}
+
+.log-out-btn {
+    background: #6B4E71;
+    color: white;
+    border-radius: 5px;
+    box-shadow: unset;
+}
