@@ -36,11 +36,6 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    boolean accountNonExpired;
-    boolean accountNonLocked;
-    boolean credentialsNonExpired;
-    boolean enabled;
-
     public static UserDetailsImpl build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
@@ -51,11 +46,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities,
-                user.isEnabled(),
-                user.isAccountNonExpired(),
-                user.isAccountNonLocked(),
-                user.isCredentialsNonExpired());
+                authorities);
     }
 
 

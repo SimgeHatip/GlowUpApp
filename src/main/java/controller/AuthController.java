@@ -1,17 +1,10 @@
 package controller;
 
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
 import domain.ERole;
 import domain.Role;
 import domain.User;
 import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -21,11 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import payload.request.LoginRequest;
 import payload.request.SignupRequest;
 import payload.response.MessageResponse;
@@ -34,6 +23,12 @@ import repository.RoleRepository;
 import repository.UserRepository;
 import security.jwt.JwtUtils;
 import security.services.UserDetailsImpl;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
@@ -55,7 +50,7 @@ public class AuthController {
     JwtUtils jwtUtils;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -64,18 +59,22 @@ public class AuthController {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+        String jwt = jwtUtils.generateJwtToken(authentication);
 
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, jwt)
                 .body(new UserInfoResponse(userDetails.getId(),
                         userDetails.getUsername(),
                         userDetails.getEmail(),
-                        roles));
+                        roles,
+                        jwt));
     }
+
+
     @CrossOrigin(origins = "http://localhost:4200/")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -90,19 +89,18 @@ public class AuthController {
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
-       UUID uuid = UUID.randomUUID();
-       User user = new User();
-       user.id = uuid.toString();
-       user.name = signUpRequest.getName();
-       user.lastName = signUpRequest.getLastName();
-       user.email = signUpRequest.getEmail();
-       user.setPassword(encoder.encode(signUpRequest.getPassword()));
-       user.isVerified = false;
-       Set<String> strRoles = signUpRequest.getRoles();
-       user.skinType = null;
-       user.isAcneProne = false;
-       user.isSpotProne = false;
-       Set<Role> roles = new HashSet<>();
+        UUID uuid = UUID.randomUUID();
+        User user = new User();
+        user.id = uuid.toString();
+        user.setUsername(signUpRequest.getUsername());
+        user.setEmail(signUpRequest.getEmail());
+        user.setPassword(encoder.encode(signUpRequest.getPassword()));
+        user.isVerified = false;
+        Set<String> strRoles = signUpRequest.getRoles();
+        user.skinType = null;
+        user.isAcneProne = false;
+        user.isSpotProne = false;
+        Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -136,4 +134,15 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser() {
+        ResponseCookie jwtCookie = jwtUtils.getCleanJwtCookie();
+        SecurityContextHolder.clearContext();  // Clear the security context
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .body("{\"message\": \"You've been signed out!\"}");  // Return a valid JSON response
+    }
+
 }

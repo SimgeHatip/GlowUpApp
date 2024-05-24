@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private storageService: StorageService) { }
 
   ngOnInit(): void {
-    if (this.storageService.isLoggedIn()) {
-      this.isLoggedIn = true;
+    this.isLoggedIn = this.storageService.isLoggedIn();
+    if (this.isLoggedIn) {
       this.roles = this.storageService.getUser().roles;
     }
   }
@@ -31,12 +31,14 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe({
       next: data => {
+        this.storageService.saveToken(data.jwt);  // Ensure the token is saved
         this.storageService.saveUser(data);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
+        console.log('Logged in with token:', data.jwt);
         this.reloadPage();
+        this.storageService.logStorage();  // Log storage after login
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -44,6 +46,8 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
+
 
   reloadPage(): void {
     window.location.reload();
