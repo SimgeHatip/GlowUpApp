@@ -1,21 +1,56 @@
-@if (currentUser) {
-  <div class="container">
-    <header class="jumbotron">
-      <h3>
-        <strong>{{ currentUser.username }}</strong> Profile
-      </h3>
-    </header>
-    <p>
-      <strong>Email:</strong>
-      {{ currentUser.email }}
-    </p>
-    <strong>Roles:</strong>
-    <ul>
-      @for (role of currentUser.roles; track role) {
-        <li>{{ role }}</li>
-      }
-    </ul>
-  </div>
-} @else {
-  <p>Please login.</p>
-}
+<div class="image-container" *ngIf="!editProfile">
+    <img
+            id="profile-img"
+            src="assets/avatar_icon.jpg"
+            class="profile-img-card"
+            alt="Profile Image"
+    />
+</div>
+<div class="card login-card" *ngIf="currentUser && !editProfile">
+    <div class="card-body">
+        <div class="profile-info-container text-center">
+            <div class="name-container">
+                <label>{{currentUser.name}} {{currentUser.lastName}}</label>
+            </div>
+            <div class="info-container">
+                <label>Email: {{currentUser.email}}</label>
+            </div>
+<!--            <div class="info-container">-->
+<!--                <label>Email: {{currentUser.email}}</label>-->
+<!--            </div>-->
+<!--            <div class="info-container">-->
+<!--                <label>isAcneProne: {{currentUser.isAcneProne}}</label>-->
+<!--            </div>-->
+<!--            <div class="info-container">-->
+<!--                <label>isSpotProne: {{currentUser.isSpotProne}}</label>-->
+<!--            </div>-->
+
+            <button class="btn btn-primary mt-3" (click)="editToggle()">Edit Profile</button>
+        </div>
+    </div>
+</div>
+
+<div class="card login-card" *ngIf="currentUser && editProfile">
+    <div class="card-body">
+        <div class="profile-edit-container text-center">
+            <form (ngSubmit)="updateUser()" #editProfileForm="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" [(ngModel)]="currentUser.name" name="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="surname">Surname</label>
+                    <input type="text" class="form-control" id="surname" [(ngModel)]="currentUser.lastName" name="lastName" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="currentUser.email" name="email" required />
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-save button">Save Changes</button>
+                    <button (click)="editToggle()" class="btn btn-cancel button">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -92,6 +92,8 @@ public class AuthController {
         UUID uuid = UUID.randomUUID();
         User user = new User();
         user.id = uuid.toString();
+        user.setName(signUpRequest.getName());
+        user.setLastName(signUpRequest.getLastName());
         user.setUsername(signUpRequest.getUsername());
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
