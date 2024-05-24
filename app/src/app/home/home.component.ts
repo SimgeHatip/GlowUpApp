@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getSnapshot(): void {
-    this.trigger.next(void 0);
+    this.trigger.next();
   }
   public captureImg(webcamImage: WebcamImage): void {
     this.webcamImage = webcamImage;
