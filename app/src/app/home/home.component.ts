@@ -3,6 +3,7 @@ import { UserService } from "../services/user.service";
 import { WebcamImage } from "ngx-webcam";
 import { Observable, Subject } from "rxjs";
 import { ImageService } from "../services/image.service";
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit {
   sysImage = '';
 
   constructor(private userService: UserService,
-              private imageService: ImageService) { }
+              private imageService: ImageService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.userService.getPublicContent().subscribe({
@@ -46,18 +48,22 @@ export class HomeComponent implements OnInit {
     this.imageService.uploadImage(this.sysImage).subscribe({
       next: data => {
         console.log(data);
-        // Cilt tipi bilgisini Spring Boot backend'e gönder
-        this.imageService.uploadSkinType(data.skin_type).subscribe({
-          next: response => {
-            console.log('Skin type saved:', response);
-          },
-          error: err => {
-            console.log(err);
-          }
-        });
+        const userId = this.authService.getUserId(); // Fetch the current user's ID
+        if (userId) {
+          this.imageService.uploadSkinType(data.skin_type, userId).subscribe({
+            next: response => {
+              console.log('Skin type saved:', response);
+            },
+            error: err => {
+              console.error('Error saving skin type:', err);
+            }
+          });
+        } else {
+          console.error('User ID not found');
+        }
       },
       error: err => {
-        console.log(err);
+        console.error('Error uploading image:', err);
       }
     });
   }

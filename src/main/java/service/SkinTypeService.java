@@ -1,9 +1,11 @@
 package service;
 
 import domain.SkinType;
+import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.SkinTypeRepository;
+import repository.UserRepository;
 
 @Service
 public class SkinTypeService {
@@ -11,10 +13,14 @@ public class SkinTypeService {
     @Autowired
     private SkinTypeRepository skinTypeRepository;
 
-    public void saveSkinType(String skinType) {
-        SkinType entity = new SkinType();
-        entity.setName(skinType);
-        skinTypeRepository.save(entity);
+    @Autowired
+    private UserRepository userRepository;
+
+    public void saveSkinTypeToUser(String userId, String skinTypeName) {
+        SkinType skinType = skinTypeRepository.findByName(skinTypeName);
+
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setSkinType(skinType);
+        userRepository.save(user);
     }
 }
-

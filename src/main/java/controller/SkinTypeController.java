@@ -8,6 +8,7 @@ import service.SkinTypeService;
 
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequestMapping("/api")
 public class SkinTypeController {
@@ -18,9 +19,10 @@ public class SkinTypeController {
     @PostMapping("/skintype")
     public ResponseEntity<String> saveSkinType(@RequestBody Map<String, String> payload) {
         String skinType = payload.get("skinType");
+        String userId = payload.get("userId");
 
-        // Veritabanına kaydet
-        skinTypeService.saveSkinType(skinType);
+        // Save skin type to user
+        skinTypeService.saveSkinTypeToUser(userId, skinType);
 
         return new ResponseEntity<>("Skin type saved successfully: " + skinType, HttpStatus.OK);
     }

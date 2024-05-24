@@ -47,4 +47,9 @@ export class AuthService {
     logoutClient(): void {
         this.storageService.clean();
     }
+
+    getUserId(): string | null {
+        const user = this.storageService.getUser();
+        return user ? user.id : null;
+    }
 }

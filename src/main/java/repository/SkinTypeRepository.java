@@ -5,4 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SkinTypeRepository extends MongoRepository<SkinType, String> {
+
+    SkinType findByName(String skinTypeName);
+
 }
