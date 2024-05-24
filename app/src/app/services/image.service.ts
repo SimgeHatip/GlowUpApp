@@ -16,4 +16,11 @@ export class ImageService {
     return this.http.post('http://localhost:5000/upload', body, {headers: headers});
   }
 
+  uploadSkinType(skinType: string): Observable<any> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const body = JSON.stringify({skinType: skinType});
+
+    return this.http.post('http://localhost:7070/api/skintype', body, {headers: headers});
+  }
+
 }
