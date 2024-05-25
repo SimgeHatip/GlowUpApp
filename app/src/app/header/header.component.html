@@ -17,6 +17,12 @@
             <li class="nav-item" *ngIf="isLoggedIn">
                 <a class="nav-link" routerLink="/user" routerLinkActive="active">User</a>
             </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a class="nav-link" routerLink="/chat-box" routerLinkActive="active">Chat With GlowUp</a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a class="nav-link" routerLink="/skin-analysis" routerLinkActive="active">Analysis Your Skin</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" *ngIf="!isLoggedIn">
