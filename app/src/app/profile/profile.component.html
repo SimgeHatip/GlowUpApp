@@ -1,56 +1,151 @@
-<div class="image-container" *ngIf="!editProfile">
-    <img
-            id="profile-img"
-            src="assets/avatar_icon.jpg"
-            class="profile-img-card"
-            alt="Profile Image"
-    />
+<div class="sidebar">
+    <div class="logo-details">
+        <div class="logo_name">
+            Hello, {{ currentUser.name }}
+        </div>
+        <i class="bx bx-menu" id="btn"></i>
+    </div>
+    <ul class="nav-list">
+        <li>
+            <i class="bx bx-search"></i>
+            <input type="text" placeholder="Search..."/>
+            <span class="tooltip">Search</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-grid-alt"></i>
+                <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-user"></i>
+                <span class="links_name">User</span>
+            </a>
+            <span class="tooltip">User</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-chat"></i>
+                <span class="links_name">Messages</span>
+            </a>
+            <span class="tooltip">Messages</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-pie-chart-alt-2"></i>
+                <span class="links_name">Analytics</span>
+            </a>
+            <span class="tooltip">Analytics</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-folder"></i>
+                <span class="links_name">File Manager</span>
+            </a>
+            <span class="tooltip">Files</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-cart-alt"></i>
+                <span class="links_name">Order</span>
+            </a>
+            <span class="tooltip">Order</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-heart"></i>
+                <span class="links_name">Saved</span>
+            </a>
+            <span class="tooltip">Saved</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class="bx bx-cog"></i>
+                <span class="links_name">Setting</span>
+            </a>
+            <span class="tooltip">Setting</span>
+        </li>
+        <li class="profile">
+            <div class="profile-details">
+                <img src="assets/avatar_icon.jpg"
+                     alt="profileImg">
+                <div class="name_job">
+                    <div class="name">{{ currentUser.name }}  {{ currentUser.lastName }}</div>
+                </div>
+            </div>
+            <a (click)="logout()">
+                <i class="bx bx-log-out" id="log_out"></i>
+            </a>
+        </li>
+    </ul>
 </div>
-<div class="card login-card" *ngIf="currentUser && !editProfile">
-    <div class="card-body">
-        <div class="profile-info-container text-center">
-            <div class="name-container">
-                <label>{{currentUser.name}} {{currentUser.lastName}}</label>
-            </div>
-            <div class="info-container">
-                <label>Email: {{currentUser.email}}</label>
-            </div>
-<!--            <div class="info-container">-->
-<!--                <label>Email: {{currentUser.email}}</label>-->
-<!--            </div>-->
-<!--            <div class="info-container">-->
-<!--                <label>isAcneProne: {{currentUser.isAcneProne}}</label>-->
-<!--            </div>-->
-<!--            <div class="info-container">-->
-<!--                <label>isSpotProne: {{currentUser.isSpotProne}}</label>-->
-<!--            </div>-->
+<section>
 
-            <button class="btn btn-primary mt-3" (click)="editToggle()">Edit Profile</button>
+
+    <div class="image-container" *ngIf="!editProfile">
+        <img
+                id="profile-img"
+                src="assets/avatar_icon.jpg"
+                class="profile-img-card"
+                alt="Profile Image"
+        />
+    </div>
+    <div class="card login-card" *ngIf="currentUser && !editProfile">
+        <div class="card-body">
+            <div class="profile-info-container text-center">
+                <div class="name-container">
+                    <label>{{ currentUser.name }} {{ currentUser.lastName }}</label>
+                </div>
+                <div class="info-container">
+                    <label>Email: {{ currentUser.email }}</label>
+                </div>
+                <!--            <div class="info-container">-->
+                <!--                <label>Email: {{currentUser.email}}</label>-->
+                <!--            </div>-->
+                <!--            <div class="info-container">-->
+                <!--                <label>isAcneProne: {{currentUser.isAcneProne}}</label>-->
+                <!--            </div>-->
+                <!--            <div class="info-container">-->
+                <!--                <label>isSpotProne: {{currentUser.isSpotProne}}</label>-->
+                <!--            </div>-->
+
+                <button class="btn btn-primary mt-3" (click)="editToggle()">Edit Profile</button>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="card login-card" *ngIf="currentUser && editProfile">
-    <div class="card-body">
-        <div class="profile-edit-container text-center">
-            <form (ngSubmit)="updateUser()" #editProfileForm="ngForm" novalidate>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" [(ngModel)]="currentUser.name" name="name" required />
-                </div>
-                <div class="form-group">
-                    <label for="surname">Surname</label>
-                    <input type="text" class="form-control" id="surname" [(ngModel)]="currentUser.lastName" name="lastName" required />
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" [(ngModel)]="currentUser.email" name="email" required />
-                </div>
-                <div class="button-container">
-                    <button type="submit" class="btn btn-save button">Save Changes</button>
-                    <button (click)="editToggle()" class="btn btn-cancel button">Cancel</button>
-                </div>
-            </form>
+    <div class="card login-card" *ngIf="currentUser && editProfile">
+        <div class="card-body">
+            <div class="profile-edit-container text-center">
+                <form (ngSubmit)="updateUser()" #editProfileForm="ngForm" novalidate>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" [(ngModel)]="currentUser.name" name="name"
+                               required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Surname</label>
+                        <input type="text" class="form-control" id="surname" [(ngModel)]="currentUser.lastName"
+                               name="lastName" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" [(ngModel)]="currentUser.email" name="email"
+                               required/>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit" class="btn btn-save button">Save Changes</button>
+                        <button (click)="editToggle()" class="btn btn-cancel button">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+</section>
+
+
+
+

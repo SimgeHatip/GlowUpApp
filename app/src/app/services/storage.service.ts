@@ -1,5 +1,5 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -8,7 +8,8 @@ const USER_KEY = 'auth-user';
     providedIn: 'root'
 })
 export class StorageService {
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    }
 
     clean(): void {
         if (isPlatformBrowser(this.platformId)) {
@@ -45,7 +46,7 @@ export class StorageService {
                 return JSON.parse(user);
             }
         }
-        return {};
+        return null;
     }
 
     public isLoggedIn(): boolean {

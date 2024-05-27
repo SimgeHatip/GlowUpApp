@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
+import {StorageService} from "../services/storage.service";
 
 @Component({
     selector: 'app-register',
@@ -8,6 +10,8 @@ import {AuthService} from '../services/auth.service';
 })
 export class RegisterComponent {
     form: any = {
+        name: null,
+        lastName: null,
         username: null,
         email: null,
         password: null
@@ -16,7 +20,9 @@ export class RegisterComponent {
     isSignUpFailed = false;
     errorMessage = '';
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService,
+                private router: Router,
+                private storageService: StorageService) {
     }
 
     onSubmit(): void {
@@ -24,14 +30,21 @@ export class RegisterComponent {
 
         this.authService.register(name, lastName, username, email, password).subscribe({
             next: data => {
-                console.log(data);
+                console.log("data", data)
                 this.isSuccessful = true;
                 this.isSignUpFailed = false;
+                this.storageService.saveToken(data.jwt);
+                this.storageService.saveUser(data);
+                this.router.navigate(['/capture']).then(r => this.reloadPage());
             },
             error: err => {
                 this.errorMessage = err.error.message;
                 this.isSignUpFailed = true;
             }
         });
+    }
+
+    reloadPage(): void {
+        window.location.reload();
     }
 }

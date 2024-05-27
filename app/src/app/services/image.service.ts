@@ -1,20 +1,21 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AuthService } from './auth.service'; // Ensure you have an AuthService to manage the token
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {AuthService} from './auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ImageService {
 
-    constructor(private http: HttpClient, private authService: AuthService) { }
+    constructor(private http: HttpClient, private authService: AuthService) {
+    }
 
     uploadImage(imageBase64: string): Observable<any> {
         const headers = new HttpHeaders({'Content-Type': 'application/json'});
-        const body = JSON.stringify({ image: imageBase64 });
+        const body = JSON.stringify({image: imageBase64});
 
-        return this.http.post('http://localhost:5000/upload', body, { headers: headers });
+        return this.http.post('http://localhost:5000/upload', body, {headers: headers});
     }
 
     uploadSkinType(skinType: string, userId: string): Observable<any> {
@@ -24,8 +25,8 @@ export class ImageService {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         });
-        const body = JSON.stringify({ skinType: skinType, userId: userId });
+        const body = JSON.stringify({skinType: skinType, userId: userId});
 
-        return this.http.post('http://localhost:7070/api/skintype', body, { headers: headers });
+        return this.http.post('http://localhost:7070/api/skintype', body, {headers: headers});
     }
 }

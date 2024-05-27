@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {StorageService} from "./storage.service";
+import {StorageService} from './storage.service';
 
 const AUTH_API = 'http://localhost:7070/api/auth/';
 
@@ -20,10 +20,7 @@ export class AuthService {
     login(username: string, password: string): Observable<any> {
         return this.http.post(
             AUTH_API + 'signin',
-            {
-                username,
-                password,
-            },
+            {username, password},
             httpOptions
         );
     }
@@ -31,13 +28,7 @@ export class AuthService {
     register(name: string, lastName: string, username: string, email: string, password: string): Observable<any> {
         return this.http.post(
             AUTH_API + 'signup',
-            {
-                name,
-                lastName,
-                username,
-                email,
-                password,
-            },
+            {name, lastName, username, email, password},
             httpOptions
         );
     }
@@ -50,8 +41,17 @@ export class AuthService {
         this.storageService.clean();
     }
 
-    getUserId(): string | null {
+    getUserId(): string {
         const user = this.storageService.getUser();
         return user ? user.id : null;
+    }
+
+    saveUserData(token: string, user: any): void {
+        this.storageService.saveToken(token);
+        this.storageService.saveUser(user);
+    }
+
+    getToken(): string | null {
+        return this.storageService.getToken();
     }
 }

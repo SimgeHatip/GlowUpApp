@@ -1,6 +1,5 @@
 
 body {
-    /*background: linear-gradient(135deg, #C2B2B4, #6B4E71, #3A4454, #53687E, #F5DDDD);*/
     background: linear-gradient(135deg, #3A4454, #6B4E71, #53687E, #6B4E71, #3A4454);
     background-size: 200% 200%;
     animation: gradientAnimation 15s ease infinite;
@@ -10,18 +9,44 @@ body {
     margin: 0;
 }
 
-.navbar {
-  background: #3A4454;
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.navbar .nav-link{
-  color: #fff;
+.navbar {
+    background: #3A4454;
+}
+
+.navbar .nav-link {
+    color: #fff;
 }
 
 .main-header .navbar-brand {
-  color: #fff;
+    color: #fff;
     padding-left: 1rem;
 }
 
+html, body {
+    height: 100%;
+}
 
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
+span.mdc-tab__text-label {
+    color: #FFFFFF;
+}
+
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: #FFFFFF;
+}
