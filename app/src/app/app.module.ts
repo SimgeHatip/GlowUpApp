@@ -17,7 +17,7 @@ import {WebcamModule} from "ngx-webcam";
 import {HeaderComponent} from './header/header.component';
 import {NgOptimizedImage} from "@angular/common";
 import {ChatBoxComponent} from './chat-box/chat-box.component';
-import {CaptureComponent} from './capture/capture.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {SkinAnalysisComponent} from './skin-analysis/skin-analysis.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatTab, MatTabGroup, MatTabLabel} from "@angular/material/tabs";
@@ -35,7 +35,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         BoardUserComponent,
         HeaderComponent,
         ChatBoxComponent,
-        CaptureComponent,
         SkinAnalysisComponent
     ],
     imports: [
@@ -48,7 +47,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         MatTabGroup,
         MatTab,
         BrowserAnimationsModule,
-        MatTabLabel
+        MatTabLabel,
+        FontAwesomeModule
     ],
     providers: [
         provideClientHydration(),

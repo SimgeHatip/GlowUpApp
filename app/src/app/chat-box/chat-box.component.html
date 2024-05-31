@@ -2,14 +2,17 @@
     <div class="chatbox">
         <header>Skincare Routine Chatbot</header>
         <div class="messages">
-            <div *ngFor="let message of messages" [ngClass]="{'message': true, 'user': message.sender === 'user', 'bot': message.sender === 'bot'}">
-                {{ message.text }}
+            <div *ngFor="let message of messages"
+                 [ngClass]="{'message': true, 'user': message.sender === 'user', 'bot': message.sender === 'bot'}">
+                {{ message.content }} <!-- Corrected from message.text to message.content -->
             </div>
         </div>
         <div class="input-box">
-            <input type="text" [(ngModel)]="userInput" placeholder="Type your message here...">
-            <button type="button" (click)="sendMessage()">Send</button>
+            <input type="text"
+                   [(ngModel)]="userInput"
+                   placeholder="Type your message here...">
+            <button type="button"
+                    (click)="sendMessage()">Send</button>
         </div>
     </div>
 </main>
-

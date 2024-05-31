@@ -9,7 +9,6 @@ import {BoardModeratorComponent} from "./board-moderator/board-moderator.compone
 import {BoardAdminComponent} from "./board-admin/board-admin.component";
 import {AuthGuard} from "./services/auth-guard";
 import {ChatBoxComponent} from "./chat-box/chat-box.component";
-import {CaptureComponent} from "./capture/capture.component";
 import {SkinAnalysisComponent} from "./skin-analysis/skin-analysis.component";
 
 const routes: Routes = [
@@ -21,7 +20,6 @@ const routes: Routes = [
     {path: 'mod', component: BoardModeratorComponent, canActivate: [AuthGuard]},
     {path: 'admin', component: BoardAdminComponent, canActivate: [AuthGuard]},
     {path: 'chat-box', component: ChatBoxComponent},
-    {path: 'capture', component: CaptureComponent},
     {path: 'skin-analysis', component: SkinAnalysisComponent},
     {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];

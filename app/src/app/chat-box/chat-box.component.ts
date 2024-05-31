@@ -1,25 +1,27 @@
-import {Component, OnInit} from '@angular/core';
-import {ChatService} from "../services/chat.service";
+import { Component } from '@angular/core';
+import { ChatService } from "../services/chat.service";
 
 @Component({
   selector: 'app-chat-box',
   templateUrl: './chat-box.component.html',
-  styleUrl: './chat-box.component.css'
+  styleUrls: ['./chat-box.component.css'] // Corrected from styleUrl to styleUrls
 })
-export class ChatBoxComponent  {
-  messages: { text: string, sender: 'user' | 'bot' }[] = [];
+export class ChatBoxComponent {
   userInput: string = '';
+  messages: { sender: string, content: string }[] = [];
 
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService) {}
 
-  sendMessage() {
+  sendMessage(): void { // Removed the input argument
     if (this.userInput.trim()) {
-      this.messages.push({ text: this.userInput, sender: 'user' });
-      this.chatService.sendMessage(this.userInput).subscribe(response => {
-        this.messages.push({ text: response.message, sender: 'bot' });
+      this.messages.push({ sender: 'user', content: this.userInput });
+      this.chatService.sendMessage(this.userInput).subscribe({
+        next: (response) => {
+          this.messages.push({ sender: 'bot', content: response });
+        },
+        error: (err) => console.error('Error sending message:', err)
       });
-      this.userInput = '';
+      this.userInput = '';  // Clear input field after send
     }
   }
-
 }

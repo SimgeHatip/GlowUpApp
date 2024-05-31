@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4 justify-content-center align-content-center text-center mt-5">
+            <h1>Daily, monthly, and self-care routines</h1>
+            <p>NLP powered and ML powered with continual improvement, enjoy self-renewing.</p>
+            <button class="btn btn-primary mb-4 glowup-path-btn">USE GLOWUP</button>
+            <div class="row">
+                <div class="col-4">
+                    <div class="icon-container justify-content-center align-content-center">
+                        <div class="icon-circle" style="background: #F5DDDD">
+                            <img src="assets/home-page-icons/analyis-icon.png" alt="WeNP" class="img-fluid home-page-icons">
+                        </div>
+                        <p class="icon-title">ANALYSIS YOUR SKIN</p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="icon-container">
+                        <div class="icon-circle" style="background:#6B4E71 ">
+                            <img src="assets/home-page-icons/skin-care.png" alt="WeNP" class="img-fluid home-page-icons">
+                        </div>
+                        <p class="icon-title">CREATE YOUR ROUTINE</p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="icon-container">
+                        <div class="icon-circle" style="background:#C2B2B4 ">
+                            <img src="assets/home-page-icons/shopping-card.png" alt="WeNP" class="img-fluid home-page-icons">
+                        </div>
+                        <p class="icon-title">GET ADVICES</p>
+                    </div>
+                </div>
+        </div>
+
+
+
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+    </div>
+        <div class="col-4 justify-content-center align-content-center mt-5">
+            <img src="assets/home-page-img/aı-man.png" alt="ai-man" class="img-fluid">
+        </div>
+        <div class="col-4 mt-5">
+            <div class="moving-circles">
+                <div class="circle" *ngFor="let image of images; let i = index" [ngStyle]="{'animation-delay': i + 's'}">
+                    <img [src]="image" alt="Profile Image">
+                </div>
+            </div>
+            <div class="changing-text mt-4">
+                <p>{{ currentText }}</p>
+            </div>
+        </div>
+    <div class="row"></div>
+</div>
+</div>

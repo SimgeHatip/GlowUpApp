@@ -1,0 +1,56 @@
+.home-page-icons {
+    width: 65%;
+    height: auto;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+}
+
+
+.glowup-path-btn {
+    background-color: #3A4454;
+    border-color: #3A4454;
+}
+
+.moving-circles {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    animation: move 5s infinite alternate;
+}
+
+.circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes move {
+    0% { top: 0; left: 0; }
+    25% { top: 0; left: 200px; }
+    50% { top: 200px; left: 200px; }
+    75% { top: 200px; left: 0; }
+    100% { top: 0; left: 0; }
+}
+
+.changing-text {
+    font-size: 1.5em;
+    font-weight: bold;
+}
