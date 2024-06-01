@@ -1,4 +1,5 @@
 package domain;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,5 +27,5 @@ public class User {
   public SkinType skinType;
   public boolean isAcneProne;
   public boolean isSpotProne;
+  public String avatarUrl;
 }
-

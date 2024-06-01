@@ -1,151 +1,124 @@
-<div class="sidebar">
-    <div class="logo-details">
-        <div class="logo_name">
-            Hello, {{ currentUser.name }}
+<div class="row" style="gap:5px; height: 70vh; margin-top: 30px;">
+    <div class="sidebar col-3">
+        <div class="logo-details">
+            <div class="logo_name" *ngIf="currentUser">
+                Hello, {{ currentUser.name }}
+            </div>
+            <i class="bx bx-menu" id="btn"></i>
         </div>
-        <i class="bx bx-menu" id="btn"></i>
+        <ul class="nav-list">
+            <li>
+                <a href="#">
+                    <i class="bx bx-user"></i>
+                    <span class="links_name">Personal Information</span>
+                </a>
+                <span class="tooltip">Personal Information</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-pie-chart-alt-2"></i>
+                    <span class="links_name">My Skin Analytics</span>
+                </a>
+                <span class="tooltip">My Skin Analytics</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bx bx-heart"></i>
+                    <span class="links_name">My Routine</span>
+                </a>
+                <span class="tooltip">My Routine</span>
+            </li>
+<!--            <li>-->
+<!--            <a href="#">-->
+<!--                    <i class="bx bx-grid-alt"></i>-->
+<!--                    <span class="links_name">Dashboard</span>-->
+<!--                </a>-->
+<!--            <span class="tooltip">Dashboard</span>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#">-->
+<!--                    <i class="bx bx-chat"></i>-->
+<!--                    <span class="links_name">Messages</span>-->
+<!--                </a>-->
+<!--                <span class="tooltip">Messages</span>-->
+<!--            </li>-->
+
+<!--            <li>-->
+<!--                <a href="#">-->
+<!--                    <i class="bx bx-folder"></i>-->
+<!--                    <span class="links_name">File Manager</span>-->
+<!--                </a>-->
+<!--                <span class="tooltip">Files</span>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#">-->
+<!--                    <i class="bx bx-cart-alt"></i>-->
+<!--                    <span class="links_name">Order</span>-->
+<!--                </a>-->
+<!--                <span class="tooltip">Order</span>-->
+<!--            </li>-->
+
+<!--            <li>-->
+<!--                <a href="#">-->
+<!--                    <i class="bx bx-cog"></i>-->
+<!--                    <span class="links_name">Setting</span>-->
+<!--                </a>-->
+<!--                <span class="tooltip">Setting</span>-->
+<!--            </li>-->
+            <li>
+                <a (click)="logout()">
+                    <i class="bx bx-log-out" id="log_out"></i>
+                    <span class="links_name">Logout</span>
+                </a>
+            </li>
+        </ul>
     </div>
-    <ul class="nav-list">
-        <li>
-            <i class="bx bx-search"></i>
-            <input type="text" placeholder="Search..."/>
-            <span class="tooltip">Search</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-grid-alt"></i>
-                <span class="links_name">Dashboard</span>
-            </a>
-            <span class="tooltip">Dashboard</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-user"></i>
-                <span class="links_name">User</span>
-            </a>
-            <span class="tooltip">User</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-chat"></i>
-                <span class="links_name">Messages</span>
-            </a>
-            <span class="tooltip">Messages</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-pie-chart-alt-2"></i>
-                <span class="links_name">Analytics</span>
-            </a>
-            <span class="tooltip">Analytics</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-folder"></i>
-                <span class="links_name">File Manager</span>
-            </a>
-            <span class="tooltip">Files</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-cart-alt"></i>
-                <span class="links_name">Order</span>
-            </a>
-            <span class="tooltip">Order</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-heart"></i>
-                <span class="links_name">Saved</span>
-            </a>
-            <span class="tooltip">Saved</span>
-        </li>
-        <li>
-            <a href="#">
-                <i class="bx bx-cog"></i>
-                <span class="links_name">Setting</span>
-            </a>
-            <span class="tooltip">Setting</span>
-        </li>
-        <li class="profile">
-            <div class="profile-details">
-                <img src="assets/avatar_icon.jpg"
-                     alt="profileImg">
-                <div class="name_job">
-                    <div class="name">{{ currentUser.name }}  {{ currentUser.lastName }}</div>
+    <div class="col-9 profile-card">
+
+        <div *ngIf="currentUser && !editProfile">
+            <button class="btn btn-primary" (click)="editToggle()"><i class='bx bxs-edit'></i></button>
+
+            <div class="image-container">
+                <img id="profile-img" [src]="currentUser.avatarUrl || 'https://i.pinimg.com/originals/54/8a/65/548a659c2b06a877516d3c998f5b0939.png'" class="profile-img-card" alt="Profile Image" />
+            </div>
+
+            <div class="card-body">
+                <div class="profile-info-container text-center">
+                    <div class="name-container">
+                        <label>{{ currentUser.name }} {{ currentUser.lastName }}</label>
+                    </div>
+                    <div class="info-container">
+                        <label>Email: {{ currentUser.email }}</label>
+                    </div>
                 </div>
             </div>
-            <a (click)="logout()">
-                <i class="bx bx-log-out" id="log_out"></i>
-            </a>
-        </li>
-    </ul>
+        </div>
+
+        <div class="profile-card" *ngIf="currentUser && editProfile">
+            <app-avatar-selection></app-avatar-selection>
+
+            <div class="card-body-edit">
+                <div class="profile-edit-container text-center">
+                    <form (ngSubmit)="updateUser()" #editProfileForm="ngForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" [(ngModel)]="currentUser.name" name="name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Surname</label>
+                            <input type="text" class="form-control" id="surname" [(ngModel)]="currentUser.lastName" name="lastName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" [(ngModel)]="currentUser.email" name="email" required />
+                        </div>
+                        <div class="button-container">
+                            <button type="submit" class="btn btn-save button">Save Changes</button>
+                            <button (click)="editToggle()" class="btn btn-cancel button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<section>
-
-
-    <div class="image-container" *ngIf="!editProfile">
-        <img
-                id="profile-img"
-                src="assets/avatar_icon.jpg"
-                class="profile-img-card"
-                alt="Profile Image"
-        />
-    </div>
-    <div class="card login-card" *ngIf="currentUser && !editProfile">
-        <div class="card-body">
-            <div class="profile-info-container text-center">
-                <div class="name-container">
-                    <label>{{ currentUser.name }} {{ currentUser.lastName }}</label>
-                </div>
-                <div class="info-container">
-                    <label>Email: {{ currentUser.email }}</label>
-                </div>
-                <!--            <div class="info-container">-->
-                <!--                <label>Email: {{currentUser.email}}</label>-->
-                <!--            </div>-->
-                <!--            <div class="info-container">-->
-                <!--                <label>isAcneProne: {{currentUser.isAcneProne}}</label>-->
-                <!--            </div>-->
-                <!--            <div class="info-container">-->
-                <!--                <label>isSpotProne: {{currentUser.isSpotProne}}</label>-->
-                <!--            </div>-->
-
-                <button class="btn btn-primary mt-3" (click)="editToggle()">Edit Profile</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card login-card" *ngIf="currentUser && editProfile">
-        <div class="card-body">
-            <div class="profile-edit-container text-center">
-                <form (ngSubmit)="updateUser()" #editProfileForm="ngForm" novalidate>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" [(ngModel)]="currentUser.name" name="name"
-                               required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="surname">Surname</label>
-                        <input type="text" class="form-control" id="surname" [(ngModel)]="currentUser.lastName"
-                               name="lastName" required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" [(ngModel)]="currentUser.email" name="email"
-                               required/>
-                    </div>
-                    <div class="button-container">
-                        <button type="submit" class="btn btn-save button">Save Changes</button>
-                        <button (click)="editToggle()" class="btn btn-cancel button">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-</section>
-
-
-
-

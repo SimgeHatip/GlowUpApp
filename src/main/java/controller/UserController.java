@@ -1,6 +1,7 @@
 package controller;
 
 import domain.User;
+import dto.AvatarRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,6 +67,16 @@ public class UserController {
             return ResponseEntity.ok(updatedUser);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating user");
+        }
+    }
+
+    @PostMapping("/users/avatar")
+    public ResponseEntity<?> saveAvatar(@RequestBody AvatarRequestDto avatarRequest) {
+        try {
+            userService.saveUserAvatar(avatarRequest.getUserId(), avatarRequest.getAvatarUrl());
+            return ResponseEntity.ok("Avatar başarıyla kaydedildi");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Avatar kaydedilirken hata oluştu");
         }
     }
 }

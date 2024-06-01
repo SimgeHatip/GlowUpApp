@@ -1,0 +1,6 @@
+<div class="avatar-container">
+    <div *ngFor="let avatar of avatars" (click)="selectAvatar(avatar)" [class.selected]="avatar === selectedAvatar">
+        <img [src]="avatar.url" [alt]="avatar.name" style="width: 100px"/>
+    </div>
+</div>
+<!--<button (click)="saveSelectedAvatar()" [disabled]="!selectedAvatar">Save Avatar</button>-->

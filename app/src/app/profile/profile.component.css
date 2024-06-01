@@ -6,8 +6,6 @@ ul.nav-list {
 }
 
 .sidebar {
-    margin-top: 56px;
-    position: fixed;
     left: 0;
     top: 0;
     height: 100%;
@@ -16,6 +14,7 @@ ul.nav-list {
     padding: 6px 14px;
     z-index: 99;
     transition: all 0.5s ease;
+    border-radius: 20px;
 }
 
 .sidebar.open {
@@ -35,7 +34,7 @@ ul.nav-list {
 }
 
 .sidebar .logo-details .logo_name {
-    color: #C2B2B4;
+    color: #3A4454;
     font-size: 20px;
     font-weight: 600;
     opacity: 0;
@@ -63,7 +62,7 @@ ul.nav-list {
 }
 
 .sidebar i {
-    color: #C2B2B4;
+    color: #3A4454;
     height: 60px;
     min-width: 50px;
     font-size: 28px;
@@ -87,7 +86,8 @@ ul.nav-list {
     top: -20px;
     left: calc(100% + 15px);
     z-index: 3;
-    background: #C2B2B4;
+    background: #3A4454;
+    color: #FFFFFF;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     padding: 6px 12px;
     border-radius: 4px;
@@ -118,11 +118,10 @@ ul.nav-list {
     outline: none;
     height: 50px;
     width: 100%;
-    width: 50px;
     border: none;
     border-radius: 12px;
     transition: all 0.5s ease;
-    background: #C2B2B4;
+    background: #3A4454;
 }
 
 .sidebar.open input {
@@ -137,16 +136,16 @@ ul.nav-list {
     transform: translateY(-50%);
     font-size: 22px;
     background: #FFFFFF;
-    color: #C2B2B4;
+    color: #3A4454;
 }
 
 .sidebar.open .bx-search:hover {
-    background: #C2B2B4;
+    background: #3A4454;
     color: #FFFFFF;
 }
 
 .sidebar .bx-search:hover {
-    background: #C2B2B4;
+    background: #3A4454;
     color: #FFFFFF;
 }
 
@@ -162,11 +161,11 @@ ul.nav-list {
 }
 
 .sidebar li a:hover {
-    background: #C2B2B4;
+    background: #3A4454;
 }
 
 .sidebar li a .links_name {
-    color: #C2B2B4;
+    color: #3A4454;
     font-size: 15px;
     font-weight: 400;
     white-space: nowrap;
@@ -227,7 +226,7 @@ ul.nav-list {
 .sidebar li.profile .job {
     font-size: 15px;
     font-weight: 400;
-    color: #C2B2B4;
+    color: #3A4454;
     white-space: nowrap;
 }
 
@@ -244,7 +243,7 @@ ul.nav-list {
     width: 100%;
     height: 60px;
     line-height: 60px;
-    border-radius: 0px;
+    border-radius: 0;
     transition: all 0.5s ease;
 }
 
@@ -286,7 +285,6 @@ ul.nav-list {
 .image-container {
     display: flex;
     justify-content: center;
-    margin-top: 45px;
 }
 
 .profile-img-card {
@@ -296,32 +294,38 @@ ul.nav-list {
     height: 100px;
 }
 
-.login-card {
-    background: rgba(255, 255, 255, 0.15);
+.profile-card {
+    background: #FFFFFF;
     border: none;
     border-radius: 15px;
     padding: 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     position: relative;
-    margin-top: 45px;
 }
 
 .name-container {
-    color: #FFFFFF;
+    color: #3A4454;
     font-size: 30px;
     margin-top: 10px;
 }
 
 .info-container {
-    color: #FFFFFF;
+    color: #3A4454;
     font-size: 20px;
     margin-top: 10px;
 }
 
 .btn-primary {
-    background-color: #6e3b6e;
-    border-color: #6e3b6e;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #3A4454;
+    border-color: #3A4454;
+}
+.btn-primary:hover{
+    background-color: #53687E;
+    border-color: #53687E;
 }
 
 .container {
@@ -332,29 +336,20 @@ ul.nav-list {
     margin-top: 50px;
 }
 
-.card {
-    background: rgba(255, 255, 255, 0.15);
-    border: none;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    color: white;
-}
-
 .card-body {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 85px;
+}
+.card-body-edit {
     padding: 20px;
     display: flex;
     justify-content: center;
 }
 
 .form-group label {
-    color: white;
-}
-
-.btn-primary {
-    background-color: #6e3b6e;
-    border-color: #6e3b6e;
+    color: #3A4454;
 }
 
 .profile-edit-container {
@@ -363,12 +358,12 @@ ul.nav-list {
 
 .button {
     border: 1px solid #6B4E71;
-    color: #C2B2B4;
+    color: #3A4454;
     background-color: #6B4E71;
 }
 
 .button:hover {
-    border: 1px solid #C2B2B4;
+    border: 1px solid #3A4454;
     color: #6B4E71;
-    background-color: #C2B2B4;
+    background-color: #3A4454;
 }

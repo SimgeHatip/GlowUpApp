@@ -11,8 +11,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -40,6 +39,13 @@ public class UserService {
         existingUser.setName(user.getName());
         existingUser.setLastName(user.getLastName());
         existingUser.setEmail(user.getEmail());
+        existingUser.setAvatarUrl(user.getAvatarUrl());
         return userRepository.save(existingUser);
+    }
+
+    public void saveUserAvatar(String userId, String avatarUrl) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setAvatarUrl(avatarUrl);
+        userRepository.save(user);
     }
 }

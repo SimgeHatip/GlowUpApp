@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {StorageService} from '../services/storage.service';
-import {UserService} from "../services/user.service";
-import {AuthService} from "../services/auth.service";
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from '../services/storage.service';
+import { UserService } from "../services/user.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
     selector: 'app-profile',
@@ -13,16 +13,13 @@ export class ProfileComponent implements OnInit {
     isLoggedIn = false;
     editProfile = false;
 
-    constructor(private storageService: StorageService,
-                private userService: UserService,
-                private authService: AuthService) {
-    }
+    constructor(private storageService: StorageService, private userService: UserService, private authService: AuthService) {}
 
     ngOnInit(): void {
         let sidebar = document.querySelector('.sidebar');
         let closeBtn = document.querySelector('#btn');
         let searchBtn = document.querySelector('.bx-search');
-
+        sidebar?.classList.toggle('open');
         closeBtn?.addEventListener('click', () => {
             sidebar?.classList.toggle('open');
             menuBtnChange();
@@ -96,6 +93,4 @@ export class ProfileComponent implements OnInit {
     reloadPage(): void {
         window.location.reload();
     }
-
-
 }

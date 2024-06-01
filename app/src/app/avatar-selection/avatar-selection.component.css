@@ -1,0 +1,16 @@
+.avatar-container {
+    display: flex;
+}
+
+.avatar-container div {
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 5px;
+    border-radius: 50%;
+    transition: border-color 0.3s;
+    justify-content: space-evenly;
+}
+
+.avatar-container div.selected {
+    border-color: #5A3B61;
+}

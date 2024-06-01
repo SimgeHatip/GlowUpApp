@@ -36,4 +36,11 @@ export class UserService {
     updateUser(id: string, user: any): Observable<any> {
         return this.http.put(`${API_URL}updateUser/${id}`, user,{ headers: this.getAuthHeaders()});
     }
+
+    saveSelectedAvatar(userId: string, avatarUrl: string) {
+     return this.http.post(`${API_URL}users/avatar`,{
+         userId,
+         avatarUrl
+     },{ headers: this.getAuthHeaders()})
+    }
 }
