@@ -1,18 +1,16 @@
 <div class="container mt-5">
-    <h2>Angular Webcam Capture Image from Camera</h2>
-    <div class="col-md-12">
+    <h2 style="font-family: 'Segoe Fluent Icons',serif;
+    color: #C2B3B0;
+    text-align: center;">Let's start analyze your skin.</h2>
+    <div class="col-md-12 webcam-container">
         <webcam
                 [trigger]="invokeObservable"
                 (imageCapture)="captureImg($event)"
         ></webcam>
     </div>
-    <div class="col-md-12">
-        <button class="btn btn-danger" (click)="getSnapshot()">
+    <div class="col-md-12" style="display: flex; justify-content: center">
+        <button class="btn  capture-button" (click)="getSnapshot()">
             Capture Image
         </button>
-    </div>
-    <div class="col-12">
-        <div id="results">Your taken image manifests here...</div>
-        <img ngSrc="webcamImage?.imageAsDataUrl" alt="webcam-image" width="300" height="200"/>
     </div>
 </div>
