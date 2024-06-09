@@ -1,27 +1,34 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {BoardUserComponent} from "./board-user/board-user.component";
-import {BoardModeratorComponent} from "./board-moderator/board-moderator.component";
-import {BoardAdminComponent} from "./board-admin/board-admin.component";
+import {HomeComponent} from "./components/home/home.component";
 import {AuthGuard} from "./services/auth-guard";
-import {ChatBoxComponent} from "./chat-box/chat-box.component";
-import {SkinAnalysisComponent} from "./skin-analysis/skin-analysis.component";
+import {LoginComponent} from "./components/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {BoardUserComponent} from "./components/board-user/board-user.component";
+import {BoardModeratorComponent} from "./components/board-moderator/board-moderator.component";
+import {BoardAdminComponent} from "./components/board-admin/board-admin.component";
+import {ChatBoxComponent} from "./components/chat-box/chat-box.component";
+import {BlogListComponent} from "./components/blog/blog-list/blog-list.component";
+import {BlogDetailComponent} from "./components/blog/blog-detail/blog-detail.component";
+import {BlogCreateComponent} from "./components/blog/blog-create/blog-create.component";
+import {CaptureComponent} from "./components/capture/capture.component";
+
 
 const routes: Routes = [
-    {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
+    {path: 'capture', component: CaptureComponent},
+    {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
     {path: 'user', component: BoardUserComponent, canActivate: [AuthGuard]},
     {path: 'mod', component: BoardModeratorComponent, canActivate: [AuthGuard]},
     {path: 'admin', component: BoardAdminComponent, canActivate: [AuthGuard]},
-    {path: 'chat-box', component: ChatBoxComponent},
-    {path: 'skin-analysis', component: SkinAnalysisComponent},
-    {path: '', redirectTo: 'login', pathMatch: 'full'}
+    {path: 'chat-box', component: ChatBoxComponent, canActivate: [AuthGuard]},
+    {path: 'blogs', component: BlogListComponent, canActivate: [AuthGuard]},
+    {path: 'blog/:id', component: BlogDetailComponent, canActivate: [AuthGuard]},
+    {path: 'create-blog', component: BlogCreateComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

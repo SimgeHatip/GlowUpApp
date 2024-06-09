@@ -3,25 +3,28 @@ import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
-import {HomeComponent} from './home/home.component';
-import {ProfileComponent} from './profile/profile.component';
-import {BoardAdminComponent} from './board-admin/board-admin.component';
-import {BoardModeratorComponent} from './board-moderator/board-moderator.component';
-import {BoardUserComponent} from './board-user/board-user.component';
 import {HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import {httpInterceptorProviders} from "./helper/auth.interceptor";
 import {WebcamModule} from "ngx-webcam";
-import {HeaderComponent} from './header/header.component';
 import {NgOptimizedImage} from "@angular/common";
-import {ChatBoxComponent} from './chat-box/chat-box.component';
-import {SkinAnalysisComponent} from './skin-analysis/skin-analysis.component';
 import {MatTab, MatTabGroup, MatTabLabel} from "@angular/material/tabs";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { AvatarSelectionComponent } from './avatar-selection/avatar-selection.component';
-import {CaptureComponent} from "./capture/capture.component";
+import {LoginComponent} from "./components/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {HomeComponent} from "./components/home/home.component";
+import {ProfileComponent} from "./components/profile/profile.component";
+import {BoardAdminComponent} from "./components/board-admin/board-admin.component";
+import {BoardModeratorComponent} from "./components/board-moderator/board-moderator.component";
+import {BoardUserComponent} from "./components/board-user/board-user.component";
+import {HeaderComponent} from "./components/header/header.component";
+import {ChatBoxComponent} from "./components/chat-box/chat-box.component";
+import {CaptureComponent} from "./components/capture/capture.component";
+import {AvatarSelectionComponent} from "./components/avatar-selection/avatar-selection.component";
+import {httpInterceptorProviders} from "./components/helper/auth.interceptor";
+import {BlogListComponent} from './components/blog/blog-list/blog-list.component';
+import {BlogDetailComponent} from './components/blog/blog-detail/blog-detail.component';
+import {BlogService} from './services/blog.service';
+import { BlogCreateComponent } from './components/blog/blog-create/blog-create.component';
 
 @NgModule({
     declarations: [
@@ -36,8 +39,10 @@ import {CaptureComponent} from "./capture/capture.component";
         HeaderComponent,
         ChatBoxComponent,
         CaptureComponent,
-        SkinAnalysisComponent,
-        AvatarSelectionComponent
+        AvatarSelectionComponent,
+        BlogListComponent,
+        BlogDetailComponent,
+        BlogCreateComponent
     ],
     imports: [
         BrowserModule,
@@ -54,6 +59,7 @@ import {CaptureComponent} from "./capture/capture.component";
     providers: [
         provideClientHydration(),
         httpInterceptorProviders,
+        BlogService,
         [provideHttpClient(withFetch())]
     ],
     bootstrap: [AppComponent]

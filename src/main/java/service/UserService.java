@@ -26,10 +26,6 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public void deleteUser(String id) {
-        userRepository.deleteById(id);
-    }
-
     public List<User> findAll() {
         return userRepository.findAll();
     }
