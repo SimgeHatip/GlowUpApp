@@ -27,6 +27,8 @@ import {BlogService} from './services/blog.service';
 import { BlogCreateComponent } from './components/blog/blog-create/blog-create.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import {NgxSimpleTextEditorModule} from "ngx-simple-text-editor";
+import { ProductSliderComponent } from './components/product-slider/product-slider.component';
+import {CategoryService} from "./services/category.service";
 
 @NgModule({
     declarations: [
@@ -45,7 +47,8 @@ import {NgxSimpleTextEditorModule} from "ngx-simple-text-editor";
         BlogListComponent,
         BlogDetailComponent,
         BlogCreateComponent,
-        ContactUsComponent
+        ContactUsComponent,
+        ProductSliderComponent
     ],
     imports: [
         BrowserModule,
@@ -64,6 +67,7 @@ import {NgxSimpleTextEditorModule} from "ngx-simple-text-editor";
         provideClientHydration(),
         httpInterceptorProviders,
         BlogService,
+        CategoryService,
         [provideHttpClient(withFetch())]
     ],
     bootstrap: [AppComponent]

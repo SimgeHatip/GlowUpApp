@@ -13,15 +13,15 @@ export class ChatBoxComponent {
   constructor(private chatService: ChatService) {}
 
   sendMessage(): void { // Removed the input argument
-    if (this.userInput.trim()) {
-      this.messages.push({ sender: 'user', content: this.userInput });
-      this.chatService.sendMessage(this.userInput).subscribe({
-        next: (response) => {
-          this.messages.push({ sender: 'bot', content: response });
-        },
-        error: (err) => console.error('Error sending message:', err)
-      });
-      this.userInput = '';  // Clear input field after send
-    }
+    // if (this.userInput.trim()) {
+    //   this.messages.push({ sender: 'user', content: this.userInput });
+    //   this.chatService.sendMessage(this.userInput).subscribe({
+    //     next: (response) => {
+    //       this.messages.push({ sender: 'bot', content: response });
+    //     },
+    //     error: (err) => console.error('Error sending message:', err)
+    //   });
+    //   this.userInput = '';  // Clear input field after send
+    // }
   }
 }

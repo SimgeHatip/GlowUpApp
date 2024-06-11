@@ -1,19 +1,28 @@
 package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.ProductService;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/search")
-    public String searchProduct(@RequestParam String query, @RequestParam String source) {
-        return productService.searchProduct(query, source);
+    @GetMapping("/product-details")
+    public String getAmazonProductDetails(@RequestParam String asin) {
+        return productService.getAmazonProductDetails(asin);
+    }
+
+    @GetMapping("/amazon-category-list")
+    public String getAmazonCategoryList(@RequestParam String country) {
+        return productService.getAmazonCategoryList(country);
+    }
+
+    @GetMapping("/amazon-products-by-category")
+    public String getAmazonProductsByCategory(@RequestParam String categoryId) {
+        return productService.getAmazonProductsByCategory(categoryId);
     }
 }

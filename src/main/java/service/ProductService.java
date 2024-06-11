@@ -1,4 +1,5 @@
 package service;
+
 import kong.unirest.core.HttpResponse;
 import kong.unirest.core.Unirest;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,17 +8,43 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
 
-    @Value("${collectapi.api.key}")
+    @Value("${rapidapi.key}")
     private String apiKey;
 
-    public String searchProduct(String query, String source) {
-        HttpResponse<String> response = Unirest.get("https://api.collectapi.com/shopping/search")
-                .queryString("data.query", query)
-                .queryString("data.source", source)
-                .header("content-type", "application/json")
-                .header("authorization", "apikey " + apiKey)
-                .asString();
+    @Value("${rapidapi.host}")
+    private String apiHost;
 
+    public String getAmazonProductDetails(String asin) {
+        HttpResponse<String> response = Unirest.get("https://" + apiHost + "/asin-to-gtin")
+                .queryString("asin", asin)
+                .queryString("country", "US")
+                .header("x-rapidapi-key", apiKey)
+                .header("x-rapidapi-host", apiHost)
+                .asString();
         return response.getBody();
     }
+
+    public String getAmazonCategoryList(String country) {
+        HttpResponse<String> response = Unirest.get("https://" + apiHost + "/product-category-list")
+                .queryString("country", country)
+                .header("x-rapidapi-key", apiKey)
+                .header("x-rapidapi-host", apiHost)
+                .asString();
+        return response.getBody();
+    }
+
+    public String getAmazonProductsByCategory(String categoryId) {
+        HttpResponse<String> response = Unirest.get("https://" + apiHost + "/products-by-category")
+                .queryString("category_id", categoryId)
+                .queryString("page", 1)
+                .queryString("country", "US")
+                .queryString("sort_by", "RELEVANCE")
+                .queryString("product_condition", "ALL")
+                .header("x-rapidapi-key", apiKey)
+                .header("x-rapidapi-host", apiHost)
+                .asString();
+        return response.getBody();
+    }
+
+
 }

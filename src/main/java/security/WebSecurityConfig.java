@@ -67,7 +67,10 @@ public class WebSecurityConfig {
                         auth.requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers("/api/test/**").permitAll()
                                 .requestMatchers("/error").permitAll()
+                                .requestMatchers("/product-details").permitAll()
+                                .requestMatchers("/amazon-category-list").permitAll()
                                 .requestMatchers("/api/skintype").permitAll()
+                                .requestMatchers("/amazon-products-by-category").permitAll()
                                 .anyRequest().authenticated()
                 );
 

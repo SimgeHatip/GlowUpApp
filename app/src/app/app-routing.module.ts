@@ -14,6 +14,7 @@ import {BlogDetailComponent} from "./components/blog/blog-detail/blog-detail.com
 import {BlogCreateComponent} from "./components/blog/blog-create/blog-create.component";
 import {CaptureComponent} from "./components/capture/capture.component";
 import {ContactUsComponent} from "./components/contact-us/contact-us.component";
+import {ProductSliderComponent} from "./components/product-slider/product-slider.component";
 
 
 const routes: Routes = [
@@ -30,7 +31,9 @@ const routes: Routes = [
     {path: 'blogs', component: BlogListComponent, canActivate: [AuthGuard]},
     {path: 'blog/:id', component: BlogDetailComponent, canActivate: [AuthGuard]},
     {path: 'create-blog', component: BlogCreateComponent, canActivate: [AuthGuard]},
-    {path: 'contact-us', component: ContactUsComponent, canActivate: [AuthGuard]}
+    {path: 'contact-us', component: ContactUsComponent, canActivate: [AuthGuard]},
+    {path: 'product-details', component: ProductSliderComponent, canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({
