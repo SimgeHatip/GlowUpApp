@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+export interface ChatResponse {
+  response: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  private apiUrl = 'http://localhost:5000/chat';
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
-
-  sendMessage(message: string): Observable<string> {
-    return this.http.post<string>(this.apiUrl, { message });
+  sendMessage(message: string): Observable<ChatResponse> {
+    return this.http.post<ChatResponse>('http://localhost:5000/chat', { message: message });
   }
 }
