@@ -14,7 +14,7 @@ public class BlogService {
     private BlogRepository blogRepository;
 
     public List<Blog> getAllBlogs() {
-        return blogRepository.findAll();
+        return blogRepository.findAllByOrderByCreatedAtDesc();
     }
 
     public Blog getBlogById(String id) {

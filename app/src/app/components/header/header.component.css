@@ -15,7 +15,7 @@
 .main-header .nav-link:hover,
 .main-header .nav-link.active {
     background-color: #C2B2B4;
-    border-radius: 15px;
+    border-radius: 5px;
     color: #FFFFFF;
 }
 

@@ -323,7 +323,8 @@ ul.nav-list {
     background-color: #3A4454;
     border-color: #3A4454;
 }
-.btn-primary:hover{
+
+.btn-primary:hover {
     background-color: #53687E;
     border-color: #53687E;
 }
@@ -342,6 +343,7 @@ ul.nav-list {
     justify-content: center;
     margin-top: 85px;
 }
+
 .card-body-edit {
     padding: 20px;
     display: flex;
@@ -358,12 +360,17 @@ ul.nav-list {
 
 .button {
     border: 1px solid #6B4E71;
-    color: #3A4454;
+    color: #FFFFFF;
     background-color: #6B4E71;
 }
 
 .button:hover {
     border: 1px solid #3A4454;
-    color: #6B4E71;
     background-color: #3A4454;
+}
+
+.button-container {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
 }

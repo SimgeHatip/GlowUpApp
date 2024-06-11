@@ -25,6 +25,8 @@ import {BlogListComponent} from './components/blog/blog-list/blog-list.component
 import {BlogDetailComponent} from './components/blog/blog-detail/blog-detail.component';
 import {BlogService} from './services/blog.service';
 import { BlogCreateComponent } from './components/blog/blog-create/blog-create.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import {NgxSimpleTextEditorModule} from "ngx-simple-text-editor";
 
 @NgModule({
     declarations: [
@@ -42,7 +44,8 @@ import { BlogCreateComponent } from './components/blog/blog-create/blog-create.c
         AvatarSelectionComponent,
         BlogListComponent,
         BlogDetailComponent,
-        BlogCreateComponent
+        BlogCreateComponent,
+        ContactUsComponent
     ],
     imports: [
         BrowserModule,
@@ -54,7 +57,8 @@ import { BlogCreateComponent } from './components/blog/blog-create/blog-create.c
         MatTabGroup,
         MatTab,
         BrowserAnimationsModule,
-        MatTabLabel
+        MatTabLabel,
+        NgxSimpleTextEditorModule
     ],
     providers: [
         provideClientHydration(),
