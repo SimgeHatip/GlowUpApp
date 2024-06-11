@@ -11,13 +11,13 @@ import { UserService } from "../../services/user.service";
 export class HeaderComponent implements OnInit {
     isLoggedIn = false;
     showAdminBoard = false;
-    showModeratorBoard = false;
     user: any;
 
-    constructor(private storageService: StorageService,
-                private authService: AuthService,
-                private userService: UserService) {
-    }
+    constructor(
+        private storageService: StorageService,
+        private authService: AuthService,
+        private userService: UserService
+    ) {}
 
     ngOnInit(): void {
         this.isLoggedIn = this.storageService.isLoggedIn();
@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
             this.userService.getUser(id).subscribe(
                 (data) => {
                     this.user = data;
+                    this.showAdminBoard = this.user.roles.some((role: any) => role.name === 'ROLE_ADMIN');
                 },
                 (error) => {
                     console.error('Error fetching user data', error);

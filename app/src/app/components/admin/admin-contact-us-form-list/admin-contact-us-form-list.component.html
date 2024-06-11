@@ -1,0 +1,13 @@
+<div class="container">
+    <h3>Contact Us Forms</h3>
+    <ng-container *ngIf="contactForms.length > 0; else noContactForms">
+        <ul>
+            <li *ngFor="let contact of contactForms">
+                {{ contact.name }} - {{ contact.message }}
+            </li>
+        </ul>
+    </ng-container>
+    <ng-template #noContactForms>
+        <p>No contact forms available.</p>
+    </ng-template>
+</div>

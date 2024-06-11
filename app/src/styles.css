@@ -29,3 +29,29 @@ span.mdc-tab__text-label {
 .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
     color: #FFFFFF;
 }
+
+mat-list-item.mat-mdc-list-item.mdc-list-item.mat-mdc-list-item-interactive.mat-mdc-list-item-single-line.mdc-list-item--with-one-line {
+    height: 60px;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    margin: 10px;
+    color: #3a4454;
+    background-color: #FFFFFF;
+    font-weight: bold;
+}
+
+mat-list-item.mat-mdc-list-item.mdc-list-item.mat-mdc-list-item-interactive.mat-mdc-list-item-single-line.mdc-list-item--with-one-line:hover {
+    opacity: 0.5;
+}
+
+mat-nav-list.mat-mdc-nav-list.mat-mdc-list-base.mdc-list {
+    position: fixed;
+}
+
+span.mat-mdc-list-item-unscoped-content.mdc-list-item__primary-text {
+    display: flex;
+    gap: 5px;
+}
+mat-sidenav.mat-drawer.mat-sidenav.ng-tns-c2033655494-0.ng-trigger.ng-trigger-transform.mat-drawer-side.mat-drawer-opened.ng-star-inserted{
+    color: #FFFFFF;
+}

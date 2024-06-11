@@ -1,6 +1,6 @@
 <div class="contact-container">
     <h3>Contact Us</h3>
-    <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="contact-form">
+    <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contact-form">
         <div class="form-group">
             <label for="name">Name Surname</label>
             <input type="text" id="name" ngModel name="name" required class="form-control">

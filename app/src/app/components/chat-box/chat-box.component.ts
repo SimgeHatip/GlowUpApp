@@ -8,7 +8,7 @@ import {ChatService} from "../../services/chat.service";
 })
 export class ChatBoxComponent {
   userInput: string = '';
-  messages: { sender: string, content: string }[] = [];
+  messages: { sender: string, content: any }[] = [];
 
   constructor(private chatService: ChatService) {}
 

@@ -1,50 +1,9 @@
-import { Component } from '@angular/core';
-import { StorageService } from './services/storage.service';
-import { AuthService } from './services/auth.service';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private roles: string[] = [];
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username?: string;
-
-  constructor(private storageService: StorageService, private authService: AuthService) { }
-
-  ngOnInit(): void {
-    this.isLoggedIn = this.storageService.isLoggedIn();
-
-    if (this.isLoggedIn) {
-      const user = this.storageService.getUser();
-      this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
-      this.username = user.username;
-    }
-  }
-
-  logout(): void {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.authService.logoutClient();
-        this.isLoggedIn = false;
-        this.reloadPage();
-        this.storageService.logStorage();  // Log storage after logout
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
-  }
-
-  reloadPage(): void {
-    window.location.reload();
-  }
 }
