@@ -1,0 +1,12 @@
+<div class="container" *ngIf="post">
+    <button routerLink="/admin/blogs" class="btn btn-secondary">Back</button>
+    <div class="row" style="display: flex; justify-content: center; align-content: center">
+        <img *ngIf="userAvatar" [src]="userAvatar" alt="{{ post.authorName }}'in avatarı" class="avatar">
+        <h2>{{ post.title }}</h2>
+        <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="Post Image" class="post-image">
+
+    </div>
+    <p class="post-meta">Author: {{ post.authorName }} | Date: {{ post.createdAt | date }}</p>
+    <div class="post-content" [innerHTML]="post.content">
+    </div>
+</div>

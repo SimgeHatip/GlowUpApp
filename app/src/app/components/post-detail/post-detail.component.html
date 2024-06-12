@@ -1,0 +1,10 @@
+<div class="container" *ngIf="post">
+    <button routerLink="/blogs" class="btn btn-secondary">Back</button>
+    <div class="post-header">
+        <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="Post Image" class="post-image">
+    </div>
+    <h2>{{ post.title }}</h2>
+
+    <p class="post-meta">Author: {{ post.authorName }} | Date: {{ post.createdAt | date }}</p>
+    <div class="post-content" [innerHTML]="post.content"></div>
+</div>

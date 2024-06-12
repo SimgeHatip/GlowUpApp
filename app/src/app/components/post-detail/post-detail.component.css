@@ -1,0 +1,32 @@
+.container {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.post-image {
+    max-width: 400px;
+    margin-right: 20px;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: gray;
+}
+
+.post-content {
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    margin-bottom: 10px;
+}
+

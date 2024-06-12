@@ -10,7 +10,7 @@ export class ChatBoxComponent {
   userInput: string = '';
   messages: { sender: string, content: any }[] = [];
 
-  constructor(private chatService: ChatService) {}
+  constructor(private  chatService: ChatService) {}
 
   sendMessage(): void { // Removed the input argument
     // if (this.userInput.trim()) {

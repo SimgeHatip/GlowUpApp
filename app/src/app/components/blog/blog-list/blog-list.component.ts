@@ -27,7 +27,6 @@ export class BlogListComponent implements OnInit {
   loadUserAvatar(userId: string): void {
     this.userService.getUser(userId).subscribe((user: User) => {
       this.userAvatars[userId] = user.avatarUrl;
-      console.log(this.userAvatars);
     });
   }
 }

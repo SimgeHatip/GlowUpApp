@@ -9,23 +9,23 @@
             <li>
                 <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
             </li>
-            <li class="nav-item" *ngIf="showAdminBoard">
-                <a class="nav-link" routerLink="/admin/blogs" routerLinkActive="active">Admin Board</a>
-            </li>
             <li class="nav-item" *ngIf="isLoggedIn">
-                <a class="nav-link" routerLink="/user" routerLinkActive="active">User</a>
+                <a class="nav-link" routerLink="/capture" routerLinkActive="active">Analyze Your Skin</a>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn">
                 <a class="nav-link" routerLink="/chat-box" routerLinkActive="active">Chat With GlowUp</a>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn">
-                <a class="nav-link" routerLink="/capture" routerLinkActive="active">Analysis Your Skin</a>
+                <a class="nav-link" routerLink="/comments" routerLinkActive="active">Comments</a>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn">
                 <a class="nav-link" routerLink="/blogs" routerLinkActive="active">Blogs</a>
             </li>
             <li class="nav-item" *ngIf="isLoggedIn">
                 <a class="nav-link" routerLink="/contact-us" routerLinkActive="active">Contact Us</a>
+            </li>
+            <li class="nav-item" *ngIf="showAdminBoard">
+                <a class="nav-link" routerLink="/admin/comments" routerLinkActive="active">Admin Board</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

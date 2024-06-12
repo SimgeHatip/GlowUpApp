@@ -1,0 +1,12 @@
+<div class="container">
+    <h3>Blogs</h3>
+    <div *ngFor="let post of posts" class="post-card">
+        <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="Post Image" class="post-image">
+        <h4>{{ post.title }}</h4>
+        <p [innerHTML]="post.content | slice:0:1050"></p>
+        <p class="post-meta">Author: {{ post.authorName }} | Date: {{ post.createdAt | date }}</p>
+        <div style="display: flex; justify-content: end">
+            <a [routerLink]="['/blog', post.id]" class="btn btn-secondary">See More</a>
+        </div>
+    </div>
+</div>

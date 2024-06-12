@@ -1,15 +1,15 @@
 <div class="container">
-    <h3>Bloglar</h3>
-    <button class="btn btn-primary btn-create" routerLink="/create-blog"><i class='bx bxs-edit'></i></button>
+    <h3>Comments</h3>
+    <button class="btn btn-primary btn-create" routerLink="/create-comment"><i class='bx bxs-edit'></i></button>
 
     <div *ngFor="let blog of blogs" class="blog-card">
         <img *ngIf="userAvatars[blog.authorId]" [src]="userAvatars[blog.authorId]"
              alt="{{ blog.authorName }}'in avatarı" class="avatar">
         <h4>{{ blog.title }}</h4>
-        <p>{{ blog.content | slice:0:150 }}...</p>
-        <p class="blog-meta">Yazar: {{ blog.authorName }} | Tarih: {{ blog.createdAt | date }}</p>
+        <p [innerHTML]="blog.content | slice:0:550"></p>
+        <p class="blog-meta">Author: {{ blog.authorName }} | Date: {{ blog.createdAt | date }}</p>
         <div style="display: flex; justify-content: end">
-            <a [routerLink]="['/blog', blog.id]" class="btn btn-secondary">See More ></a>
+            <a [routerLink]="['/comment', blog.id]" class="btn btn-secondary">See More ></a>
         </div>
     </div>
 </div>
