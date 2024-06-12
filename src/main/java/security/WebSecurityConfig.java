@@ -68,7 +68,6 @@ public class WebSecurityConfig {
                                 .requestMatchers("/api/test/**").permitAll()
                                 .requestMatchers("/error").permitAll()
                                 .requestMatchers("/product-details").permitAll()
-                                .requestMatchers("/amazon-category-list").permitAll()
                                 .requestMatchers("/api/skintype").permitAll()
                                 .requestMatchers("/api/products").permitAll()
                                 .anyRequest().authenticated()
