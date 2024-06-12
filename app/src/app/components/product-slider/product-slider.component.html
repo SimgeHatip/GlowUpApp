@@ -1,7 +1,14 @@
-<div class="product-list">
-    <div *ngFor="let product of products" class="product-item">
-        <img [src]="product.product_photo" alt="{{product.product_title}}">
-        <h3>{{product.product_title}}</h3>
-        <p>{{product.product_price}}</p>
+<h2 class="slider-title mt-5">See Products</h2>
+<div class="slider-container">
+    <button class="slider-button left" (click)="scrollLeft()">‹</button>
+    <div #slider class="slider">
+        <div *ngFor="let product of products" class="slide" (click)="navigateToUrl(product.short_url)">
+            <img [src]="product.image_1" alt="{{ product.name }}" class="product-image">
+            <div class="product-info">
+                <p class="product-text">{{ product.name }}</p>
+                <p class="product-price">{{ product.price }}</p>
+            </div>
+        </div>
     </div>
+    <button class="slider-button right" (click)="scrollRight()">›</button>
 </div>

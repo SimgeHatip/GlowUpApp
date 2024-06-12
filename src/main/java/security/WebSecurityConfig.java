@@ -70,7 +70,7 @@ public class WebSecurityConfig {
                                 .requestMatchers("/product-details").permitAll()
                                 .requestMatchers("/amazon-category-list").permitAll()
                                 .requestMatchers("/api/skintype").permitAll()
-                                .requestMatchers("/amazon-products-by-category").permitAll()
+                                .requestMatchers("/api/products").permitAll()
                                 .anyRequest().authenticated()
                 );
 

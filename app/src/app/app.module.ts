@@ -26,6 +26,11 @@ import { BlogCreateComponent } from './components/blog/blog-create/blog-create.c
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { NgxSimpleTextEditorModule } from "ngx-simple-text-editor";
 import { ProductSliderComponent } from './components/product-slider/product-slider.component';
+import {ProductService} from "./services/product-service";
+import {AdminComponent} from "./components/admin/admin.component";
+import {MatTabsModule} from '@angular/material/tabs';
+import {AdminBlogDetailComponent} from './components/admin/admin-blog-detail/admin-blog-detail.component';
+import {AdminBlogListComponent} from "./components/admin/admin-blog-list/admin-blog-list.component";
 import { CategoryService } from "./services/category.service";
 import { AdminComponent } from "./components/admin/admin.component";
 import { MatTabsModule } from '@angular/material/tabs';
@@ -97,13 +102,13 @@ import { AdminPostDetailComponent } from './components/admin/admin-post-detail/a
         MatListModule,
         MatIconModule,
         MatToolbarModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     providers: [
         provideClientHydration(),
         httpInterceptorProviders,
         BlogService,
-        CategoryService,
+        ProductService,
         [provideHttpClient(withFetch())]
     ],
     bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {CategoryService} from "../../services/category.service";
+import {ProductService} from "../../services/product-service";
+import {SkincareProduct} from "../../models/SkincareProduct";
 
 @Component({
   selector: 'app-product-slider',
@@ -8,35 +9,43 @@ import {CategoryService} from "../../services/category.service";
   styleUrl: './product-slider.component.css'
 })
 export class ProductSliderComponent implements OnInit {
-  categories: any[] = [];
-  products: any[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+    products: SkincareProduct[] = [];
+    errorMessage: string | null = null;
 
-  ngOnInit(): void {
-    this.getCategories();
-    this.getCareProducts("3760911");
-  }
+    @ViewChild('slider', { read: ElementRef }) slider: ElementRef | undefined;
 
-  getCategories(): void {
-    this.categoryService.getAmazonCategoryList('US')
-        .subscribe(data => {
-          if (Array.isArray(data)) {
-            this.categories = data;
-            console.log(this.categories);
+    constructor(private productService: ProductService) {}
 
-          } else {
-            this.categories = Object.values(data);
-            console.log(this.categories[2]);
-          }
+    ngOnInit(): void {
+        this.productService.getProducts('skincare', 10).subscribe({
+            next: (data) => {
+                console.log('Received data:', data);
+                this.products = data;
+            },
+            error: (error) => {
+                console.error('Error fetching products:', error);
+                this.errorMessage = error.message;
+            },
+            complete: () => {
+                console.log('Product fetch complete');
+            }
         });
-  }
+    }
 
-    getCareProducts(categoryId: string): void {
-        this.categoryService.getAmazonProductsByCategory(categoryId)
-            .subscribe(data => {
-                console.log(data.data.products);
-             this.products = data.data.products;
-            });
+    scrollLeft(): void {
+        if (this.slider) {
+            this.slider.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+        }
+    }
+
+    scrollRight(): void {
+        if (this.slider) {
+            this.slider.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+    }
+
+    navigateToUrl(url: string): void {
+        window.open(url, '_blank');
     }
 }
