@@ -4,7 +4,7 @@
         <div class="messages">
             <div *ngFor="let message of messages"
                  [ngClass]="{'message': true, 'user': message.sender === 'user', 'bot': message.sender === 'bot'}">
-                {{ message.content }} <!-- Corrected from message.text to message.content -->
+                {{ message.content }}
             </div>
         </div>
         <div class="input-box">

@@ -11,9 +11,11 @@ export interface ChatResponse {
 })
 export class ChatService {
 
+  private apiUrl = 'http://localhost:5000/chat'; // API URL'nizi buraya ekleyin
+
   constructor(private http: HttpClient) { }
 
   sendMessage(message: string): Observable<ChatResponse> {
-    return this.http.post<ChatResponse>('http://localhost:5000/chat', { message: message });
+    return this.http.post<ChatResponse>(this.apiUrl, { message: message });
   }
 }
