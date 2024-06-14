@@ -38,16 +38,19 @@ export class CaptureComponent {
             next: data => {
                 this.imageService.uploadSkinType(data.skin_type, userId).subscribe({
                     next: () => {
-                        this.router.navigate(['/login']);
+                        this.router.navigate(['/home']);
                     },
                     error: err => {
                         console.error('Error updating user with image:', err);
                     }
                 });
+                alert("Image sent to proceed")
+                this.router.navigate(['/home']);
             },
             error: err => {
                 console.error('Error uploading image:', err);
             }
+
         });
     }
 
